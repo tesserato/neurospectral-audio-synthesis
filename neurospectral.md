@@ -15,6 +15,17 @@ In order to exhibit a credible sound texture, digital musical instruments that p
 
 **Key-words:** neural networks, acoustic modeling, digital musical instruments, real-time audio synthesis
 
+This research did not receive any specific grant from funding agencies in the public, commercial, or
+not-for-profit sectors.
+
+# Highlights
+
+- Physical informed frequency-domain representations learned by neural networks can increase real-time synthesis efficiency.
+
+- The model learns sound characteristics that are hard to model via conventional methods.
+
+- Potential applications are still vastly underexplored.
+
 # Introduction
 <!-- ~ 1000 to 2000 words -->
 
