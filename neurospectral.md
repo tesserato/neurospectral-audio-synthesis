@@ -107,11 +107,11 @@ We can then write $f_0[k]$ as $440 . 2^\frac{k-49}{12} (c_1 k^3 + c_2 k^2 + c_3 
 
 ![Comparison:Tempered x Streched tuning](images/stretch.png){#fig:stretch}
 
-Thus, an arbitrary theoretical frequency, as a function of the piano key and the partial considered, will be represented, in the model, as follows: $f_0[k, p] = 440 . 2^\frac{k-49}{12} (c_1 k^3 + c_2 k^2 + c_3 k) (p + 1) i[k, p], k \in {1, 2, ..., 88}, p \in \{0,1,2, ...\}$, where $i[k, p]$ is the inharmonicity as given by the network.
+Thus, an arbitrary theoretical frequency, as a function of the piano key and the partial considered, will be represented, in the model, as follows: $f_0[k, p] = 440 . 2^\frac{k-49}{12} (c_1 k^3 + c_2 k^2 + c_3 k) (p + 1) i[k, p], \quad k \in \{1, 2, ..., 88\}, p \in \{0,1,2, ...\}$, where $i[k, p]$ is the inharmonicity as given by the network.
 
 Considering both fundamental and partial frequencies in the audible spectrum, the model would have to learn a range of frequencies from 27 Hz, the fundamental frequency of A0, to a little more than 20 kHz, corresponding, for example, to the fifth partial of C8, if it was to estimate directly the partial frequencies of a piano.
 
-Working with inharmonicities, on the other hand, reduced the interval to the limit between 0.98 and 1.02. In addition, the behavior of inharmonicities is reasonably predictable, with a slightly exponential character, as illustrated in @fig:inharmonicities.
+Working with inharmonicities, on the other hand, reduced the interval to the limit between 0.98 and 1.02. In addition, the behavior of inharmonicities is reasonably predictable, with a slightly exponential character, as illustrated in figure @fig:inharmonicities.
 
 Despite being formulated and used in this work in the context of a piano, this framework is convenient for a wide range of instruments, since the 88 keys of a piano range from A0 to C8, covering the frequency spectrum of most instruments of interest; To train the network from any instrument, one has simply to label the samples of the relevant sounds with the equivalent key number of a piano.
 
@@ -133,7 +133,7 @@ This approach provides for less redundancy in the model while allowing for the n
 
 ![Predictions](images/results.png){#fig:results}
 
-Thus, we can define a new methodology for modeling of harmonic instruments, dubbed "Neuro-Spectral Synthesis", as summarized in figure @fig:neurospectral:.
+Thus, we can define a new methodology for modeling of harmonic instruments, dubbed "Neuro-Spectral Synthesis", as summarized in figure @fig:neurospectral.
 
 ![Schematic view of the final model](images/neurospectral.png){#fig:neurospectral}
 
@@ -151,7 +151,7 @@ For comparison, taking into account the generation of 5 1-second waves at 44,100
 
 
 |               | Finite Differences | Digital Waveguides | Neuro-Spectral Synthesis |
-|---------------|:--------------------:|:--------------------:|:--------------------------:|
+|:-------------:|:--------------------:|:--------------------:|:--------------------------:|
 | 1             | 16.95213819        | 13.81114888        | 0.5896253586             |
 | 2             | 19.62042928        | 13.02065825        | 0.8354649544             |
 | 3             | 24.25646234        | 11.33273816        | 0.7555158138             |
@@ -189,7 +189,7 @@ Furthermore, through the use of specially designed activation functions to accom
 
 The possibilities for future developments in this area of ​​intersection between neural networks and acoustic modeling are numerous, given the scarcity of similar investigations: It would be interesting, for example, to use the outputs of a model based on the finite difference method, which can be formulated so as to simulate more sophisticated features of an instrument such as string stiffness, resonance and various terms of loss of a given acoustic system, at the cost of a high demand of computational resources, to train a model based on digital waveguides with a neural network at the point where losses and other calculations are concatenated.
 
-Due to the high degree of recursion of the digital waveguides algorithm, direct training based on the expected outputs of the model is quite complex to be implemented; the output vectors of a simulation based on finite differences, however, are fully compatible with this approach, and the insertion of a neural network could lead to a model that retains at least part of the accuracy of the simulation by the finite difference method, with computational efficiency close to or even higher than that presented by the digital waveguides algorithm. In [@gully2017articulatory], for example, we find an example of this work, which explores the use of neural networks for the identification of relevant parameters to a simulation by digital waveguides of the human vocal tract.
+Due to the high degree of recursion of the digital waveguides algorithm, direct training based on the expected outputs of the model is quite complex to be implemented; the output vectors of a simulation based on finite differences, however, are fully compatible with this approach, and the insertion of a neural network could lead to a model that retains at least part of the accuracy of the simulation by the finite difference method, with computational efficiency close to or even higher than that presented by the digital waveguides algorithm. In @gully2017articulatory, for example, we find an example of this work, which explores the use of neural networks for the identification of relevant parameters to a simulation by digital waveguides of the human vocal tract.
 
 Relaxing the simplification adopted during the work in relation to exponential decays is another future development with interesting potential: for some categories of sound, the human voice, for example, the envelope of the wave presents greater impact than the frequencies in perceptual characteristics of the sound, such as intelligibility.
 
