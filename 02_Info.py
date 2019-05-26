@@ -15,10 +15,11 @@ def pad(X, n, value = 0):
     padded = np.hstack([X, zeros])
   # print('p:', padded.shape[0])
   return padded
+
 ##########################################
 ##########################################
 ################ Settings ################
-piece_name = 'piano'
+piece_name = 'hibrid'
 partials = 100
 ##########################################
 ##########################################
@@ -30,9 +31,11 @@ for filename in filenames:
   names.append(filename.replace('.wav', ''))
 names = np.sort(np.array(names, dtype=np.int)).astype(np.str)
 
-save_path = '01_Info/' + piece_name + '/'
+save_path = '02_Info/' + piece_name + '/'
 os.makedirs(save_path, exist_ok=True)
 os.makedirs(save_path + 'graphs/', exist_ok=True)
+
+coefs = np.genfromtxt("01_tuning_stretch/"+ piece_name +"/coefs.csv")
 
 # extract frequencies, amplitudes and decays per partials
 max_amps = []
@@ -52,7 +55,7 @@ for name in names:
   max_amp = np.max(P)                                              #<| <| <| <| <|
   max_amps.append(max_amp)
   k = int(name)
-  f0 = np.power(2, (k - 49) / 12) * 440 * (1.17912446e-07 * k ** 3 -1.59501627e-05 * k ** 2 + 8.64681234e-04 * k + 9.86196582e-01)
+  f0 = np.power(2, (k - 49) / 12) * 440 * (coefs[0] * k ** coefs[1] * k ** 2 + coefs[2] * k + coefs[3])
 
   local_f0 = int(round(f0 / fps * n))
   idxs = argrelmax(P, order=local_f0 // 2)[0] #Local Frequencies

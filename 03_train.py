@@ -1,4 +1,5 @@
 import numpy as np
+np.random.seed(1)
 import keras as K
 import matplotlib.pyplot as plt
 # from Hlib import save_wav
@@ -14,7 +15,7 @@ def scaled_tanh(x):
 
 #loss: 0.0169 - frequency_3_loss: 0.0016 - amplitude_3_loss: 0.0120 - decay_3_loss: 0.0033
 piece_name = 'piano'
-path = '02_predictions/' + piece_name + '/'
+path = '03_train/' + piece_name + '/'
 epcs = 5000
 os.makedirs(path, exist_ok=True)
 
@@ -26,9 +27,9 @@ for filename in filenames:
 names = np.sort(np.array(names, dtype=np.int)).astype(np.str)
 
 # reading targets
-orig_frequencies = np.load('01_info/' + piece_name + '/Mfreqs_over_Tfreqs.npy')
-orig_amplitudes = np.load('01_info/' + piece_name + '/amps_over_max_amp.npy')
-orig_decays = np.load('01_info/' + piece_name + '/decays.npy')
+orig_frequencies = np.load('02_info/' + piece_name + '/Mfreqs_over_Tfreqs.npy')
+orig_amplitudes = np.load('02_info/' + piece_name + '/amps_over_max_amp.npy')
+orig_decays = np.load('02_info/' + piece_name + '/decays.npy')
 
 orig_decays = np.where(orig_decays >= 0, orig_decays, np.average(orig_decays))
 

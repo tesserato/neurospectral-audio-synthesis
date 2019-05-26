@@ -7,7 +7,7 @@ import os
 piece_name = 'piano'
 fps = 44100
 n = fps * 10
-save_path = '03_waves/' + piece_name + '/'
+save_path = '05_all_waves/' + piece_name + '/'
 os.makedirs(save_path, exist_ok=True)
 
 partials = 100
@@ -21,15 +21,16 @@ names = []
 for i in range(1, 88 + 1):
   names.append(str(i))
 
-A = np.genfromtxt('02_predictions/' + piece_name + '/amps_over_max_amp.csv', delimiter=',')
-D = np.genfromtxt('02_predictions/' + piece_name + '/decays.csv', delimiter=',')
-I = np.genfromtxt('02_predictions/' + piece_name + '/Mfreqs_over_Tfreqs.csv', delimiter=',')
+A = np.genfromtxt('03_train/' + piece_name + '/amps_over_max_amp.csv', delimiter=',')
+D = np.genfromtxt('03_train/' + piece_name + '/decays.csv', delimiter=',')
+I = np.genfromtxt('03_train/' + piece_name + '/Mfreqs_over_Tfreqs.csv', delimiter=',')
+K = np.genfromtxt("01_tuning_stretch/"+ piece_name +"/coefs.csv")
 
 for i, name in enumerate(names):
   k = int(name)
   print(name)
   w = np.zeros(n)
-  f0 = np.power(2, (k - 49) / 12) * 440 * (1.17912446e-07 * k ** 3 -1.59501627e-05 * k ** 2 + 8.64681234e-04 * k + 9.86196582e-01)
+  f0 = np.power(2, (k - 49) / 12) * 440 * (K[0] * k ** K[1] * k ** 2 + K[2] * k + K[3])
   for j in range(partials):
     p = np.random.uniform(0, 2 * np.pi)
     f = f0 * (j+1) * I[i, j]
